@@ -68,47 +68,29 @@ public class sort{
                 quickSort(inarr, i+1, high);
         }
 
-/*
-        public static int[] merge(int arr1[], int arr2[]){
-                int i = 0;
-                int j = 0;
-                int outarr[] = new int[arr1.length+arr2.length];
-                int curr = 0;
-                while((i < arr1.length) && (j < arr2.length)){
-                        if(arr1[i] < arr2[j]){
-                                outarr[curr] = arr1[i];
-                                i++;
-                        }else{
-                                outarr[curr] = arr2[j];
-                                j++;
-                        }
-                        curr++;
+        public static void heapSort(int inarr[]){
+                for(int i=inarr.length-1;i>=0;i--){
+                        int tmp = inarr[0];
+                        inarr[0] = inarr[i];
+                        inarr[i] = tmp;
+                        heapDown(inarr,0,i);
                 }
-                if(i < arr1.length){
-                        for(int m=0; m<=arr1.length+arr2.length-1-curr;m++){
-                                outarr[curr+m] = arr1[i+m];
-                        }
-                }
-                if(j < arr2.length){
-                        for(int m=0; m<=arr1.length+arr2.length-1-curr;m++){
-                                outarr[curr+m] = arr2[j+m];
-                        }
-                }
-                return outarr;
         }
 
-        public static int[] mergeSort(int inarr[]){
-                if(inarr.length <= 1){
-                        return inarr;
+        public static void heapDown(int arr[], int i, int n){
+                int tmp = arr[i];
+                int j = i*2 +1;
+                while(j < n){
+                        if((j+1 < n) && (arr[j+1] > arr[j])){j++;}
+                        if(arr[j] < tmp){break;}
+                        arr[i] = arr[j];
+                        i = j;
+                        j = 2*i +1;
                 }
-                int mid = (int)(inarr.length/2);
-                int left[] = Arrays.copyOfRange(inarr,0,mid-1);
-                int right[] = Arrays.copyOfRange(inarr,mid,inarr.length);
-                int left_out[] = mergeSort(left);
-                int right_out[] = mergeSort(right);
-                return merge(left_out, right_out);
+                arr[i] = tmp;
         }
-*/
+
+
         public static void main(String args[]){
                 int a[] = {9,8,7,6,5,4,3,2,1};
                 bubbleSort(a);
@@ -142,14 +124,12 @@ public class sort{
                 }
                 System.out.println("");
 
-/*                int e[] = {9,8,7,6,5,4,3,2,1};
-                int result[] = new int[e.length];
-                result = mergeSort(e);
-                System.out.print("Merge sort: ");
-                for(int i=0; i < result.length; i++) {
-                        System.out.print(result[i] + " ");
+                int f[] = {9,8,7,6,5,4,3,2,1};
+                heapSort(f);
+                System.out.print("Heap sort: ");
+                for(int i=0; i < f.length; i++) {
+                        System.out.print(f[i] + " ");
                 }
                 System.out.println("");
-*/
         }
 }
