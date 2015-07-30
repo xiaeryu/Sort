@@ -69,6 +69,28 @@ void quickSort(int inarr[], int low, int high){
         quickSort(inarr, i+1, high);
 }
 
+void heapDown(int arr[], int i, int n){
+        int tmp = arr[i];
+        int j = i*2 +1;
+        while(j < n){
+                if((j+1 < n) && (arr[j+1] > arr[j])){j++;}
+                if(arr[j] < tmp){break;}
+                arr[i] = arr[j];
+                i = j;
+                j = 2*i +1;
+        }
+        arr[i] = tmp;
+}
+
+void heapSort(int inarr[], int arrlen){
+        for(int i=arrlen-1;i>=0;i--){
+                int tmp = inarr[0];
+                inarr[0] = inarr[i];
+                inarr[i] = tmp;
+                heapDown(inarr,0,i);
+        }
+}
+
 int main(){
         int a[10] = {10,9,8,7,6,5,4,3,2,1};
         bubbleSort(a,10);
@@ -99,6 +121,14 @@ int main(){
         cout << "Quick sort: ";
         for(int i =0;i<=9;i++){
                 cout << d[i] << " ";
+        }
+        cout << endl;
+
+        int e[10] = {10,9,8,7,6,5,4,3,2,1};
+        heapSort(e,10);
+        cout << "Heap sort: ";
+        for(int i =0;i<=9;i++){
+                cout << e[i] << " ";
         }
         cout << endl;
 
