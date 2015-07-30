@@ -108,6 +108,28 @@ class sort:
                 inarr.extend(item)
             bucket = [[] for i in xrange(radix)]
         return inarr
+    
+    def heapSort(self, inarr):
+        for end in range(len(inarr)-1,0,-1):
+            inarr[0],inarr[end]=inarr[end],inarr[0]
+            self.heapDown(inarr,0,end-1)
+        return inarr
+
+    def heapDown(self, arr, i, n):
+    # starting from node i, the total number of nodes is n.
+        tmp = arr[i]
+        j = 2*i + 1
+        while j < n:
+            if j+1 < n and arr[j+1] > arr[j]:
+                j += 1
+
+            if (arr[j] <= tmp):
+                break
+
+            arr[i] = arr[j]
+            i = j
+            j = 2*i + 1
+        arr[i] = tmp
 
 if __name__ == '__main__':
     t = sort()
@@ -132,3 +154,6 @@ if __name__ == '__main__':
     arr = [10,9,8,7,6,5,4,3,2,1]
     print "Bucket sort:",
     print t.radixSort(arr)
+    arr = [10,9,8,7,6,5,4,3,2,1]
+    print "Heap sort:",
+    print t.heapSort(arr)
