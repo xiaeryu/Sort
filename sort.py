@@ -112,7 +112,7 @@ class sort:
     def heapSort(self, inarr):
         for end in range(len(inarr)-1,0,-1):
             inarr[0],inarr[end]=inarr[end],inarr[0]
-            self.heapDown(inarr,0,end-1)
+            self.heapDown(inarr,0,end)
         return inarr
 
     def heapDown(self, arr, i, n):
