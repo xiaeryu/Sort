@@ -134,6 +134,23 @@ public class sort{
 		mergeSort(inarr,mid+1,to);
 		merge(inarr,from,mid,to);
 	}
+	
+	public static void shellSort(int[] inarr){
+                int gap = inarr.length/2;
+                while(gap > 0){
+                        for(int i=gap; i<inarr.length;i++){
+                                int insVal = inarr[i];
+                                int j = i;
+                                while(j>=gap && inarr[j-gap]>insVal){
+                                        inarr[j] = inarr[j-gap];
+                                        j -= gap;
+                                }
+                                inarr[j] = insVal;
+                        }
+                        gap /= 2;
+                }
+        }
+
 
         public static void main(String args[]){
                 int a[] = {9,8,7,6,5,4,3,2,1};
