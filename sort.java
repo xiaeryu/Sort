@@ -89,7 +89,51 @@ public class sort{
                 }
                 arr[i] = tmp;
         }
+        
+        public static void merge(int[] inarr, int from, int mid, int to){
+		int fullLen = to - from + 1;
+		int rLen = to - mid;
+		int lLen = mid - from + 1;
 
+		int[] storage = new int[fullLen];
+		for(int m=from; m<=to; m++){
+			storage[m-from] = inarr[m];
+		}
+                
+		int i = 0;
+		int j = mid-from+1;
+		int flag = from;
+		while(i < lLen && j < fullLen){
+			if(storage[i] <= storage[j]){
+				inarr[flag] = storage[i];
+				i ++;
+			}else{
+				inarr[flag] = storage[j];
+				j ++;
+			}
+			flag ++;
+		}
+		if(i < lLen){
+			for(int m=i;m<lLen;m++){
+				inarr[flag] = storage[m];
+				flag ++;
+			}
+		}
+		if(j < fullLen){
+			for(int n=j;n<rLen;n++){
+				inarr[flag] = storage[n];
+				flag ++;
+			}
+		}
+	}
+
+	public static void mergeSort(int[] inarr, int from, int to){
+		if(to <= from){return;}
+		int mid = (to + from)/2;
+		mergeSort(inarr,from,mid);
+		mergeSort(inarr,mid+1,to);
+		merge(inarr,from,mid,to);
+	}
 
         public static void main(String args[]){
                 int a[] = {9,8,7,6,5,4,3,2,1};
